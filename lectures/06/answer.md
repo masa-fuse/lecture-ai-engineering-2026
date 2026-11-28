@@ -14,7 +14,7 @@
 
 <!-- 基礎・実装・発展のどれか1つに取り組めば完了です。 -->
 
-- 取り組んだレベル：基礎 / 実装 / 発展
-- やったこと：
-- 結果：
-- 気づき・疑問：
+- 取り組んだレベル：基礎
+- やったこと：`app/mcp_server.py` の TODO の下に `server.tool()(tools.get_lecture_summary)` を1行足した。エージェント側（`mcp_servers.json`・`mcp_agent.py`）は触っていない。
+- 結果：`--list-tools` に `glossary_get_lecture_summary`（引数 `lecture: integer`）が増えた。「第2回では何を学びますか？」で `glossary_get_lecture_summary({'lecture': 2})` が呼ばれ、モデル応答 2 回で第2回の要点を答えた。`uv run pytest -q` は 21 passed。
+- 気づき・疑問：エージェントは起動のたびにツールの一覧をサーバーに聞くので、サーバーに1行足すだけで使えるようになった。今回は検索の `search_glossary` ではなく、ちゃんと要点のほうを選んでいた。docstring の「第3回では何を学ぶ？のように」という例がそのまま効いている気がする。
